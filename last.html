@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpicLuster - Media Production Company</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           CSS VARIABLES & RESET
+           ========================================== */
+        :root {
+            --primary-black: #000000;
+            --primary-orange: #ff6a00;
+            --dark-gray: #0a0a0a;
+            --medium-gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-cinematic: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 106, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--primary-orange);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-orange);
+        }
+
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-white);
+            transition: var(--transition-smooth);
+        }
+
+        /* ==========================================
+           SECTIONS BASE STYLES
+           ========================================== */
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* ==========================================
+           HOME SECTION - HERO
+           ========================================== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 106, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 106, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ff6a00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-gray);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 106, 0, 0.1);
+            border: 1px solid var(--primary-orange);
+            border-radius: 50px;
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero-contact:hover {
+            background: var(--primary-orange);
+            color: var(--text-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 106, 0, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: var(--primary-orange);
+        }
+
+        /* ==========================================
+           CONTENT SECTIONS
+           ========================================== */
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: var(--medium-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 106, 0, 0.2);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+
+        .gallery-category {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* What We Do Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--medium-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 106, 0, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 106, 0, 0.15);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Video Player Custom Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            background: var(--dark-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 1px solid var(--light-gray);
+        }
+
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+
+        .video-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--medium-gray);
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .control-btn:hover {
+            background: var(--primary-orange);
+            color: var(--text-white);
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: var(--light-gray);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-orange);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ==========================================
+           GALLERY TAB SPECIFIC
+           ========================================== */
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-tab-btn {
+            background: transparent;
+            border: 1px solid var(--light-gray);
+            color: var(--text-white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .gallery-tab-btn:hover,
+        .gallery-tab-btn.active {
+            background: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--text-white);
+        }
+
+        .gallery-content {
+            display: none;
+        }
+
+        .gallery-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* ==========================================
+           ABOUT TAB
+           ========================================== */
+        .about-hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--primary-black) 100%);
+            margin-bottom: 4rem;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .team-section {
+            margin-bottom: 5rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--medium-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.3);
+        }
+
+        .team-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image i {
+            font-size: 4rem;
+            color: var(--light-gray);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+
+        .team-role {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cast Section */
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cast-card {
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .cast-card:hover {
+            transform: scale(1.05);
+        }
+
+        .cast-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid transparent;
+            transition: var(--transition-smooth);
+            overflow: hidden;
+        }
+
+        .cast-card:hover .cast-image {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+        }
+
+        .cast-image i {
+            font-size: 3rem;
+            color: var(--light-gray);
+        }
+
+        .cast-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cast-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cast-award {
+            font-size: 0.85rem;
+            color: var(--primary-orange);
+        }
+
+        /* ==========================================
+           CONTACT TAB
+           ========================================== */
+        .contact-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--medium-gray);
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary-orange);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 106, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            font-size: 1.3rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--primary-orange);
+            color: var(--text-white);
+            transform: rotate(360deg);
+        }
+
+        .contact-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p,
+        .contact-details a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-details a:hover {
+            color: var(--primary-orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: 1.3rem;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary-orange);
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 106, 0, 0.3);
+        }
+
+        .contact-visual {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, var(--medium-gray) 0%, var(--dark-gray) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .contact-visual::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 106, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .contact-visual i {
+            font-size: 10rem;
+            color: var(--primary-orange);
+            opacity: 0.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            background: var(--dark-gray);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--primary-orange);
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           ANIMATIONS
+           ========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--dark-gray);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 1.5rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-visual {
+                height: 300px;
+                order: -1;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cast-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Utility Classes */
+        .text-orange {
+            color: var(--primary-orange);
+        }
+
+        .bg-dark {
+            background: var(--dark-gray);
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: var(--primary-orange);
+            width: 0%;
+            animation: load 2s ease-in-out forwards;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes load {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">EPIC<span>LUSTER</span></div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showSection('home')">EPIC<span>LUSTER</span></a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link active" onclick="showSection('home')">Home</a></li>
+                <li><a class="nav-link" onclick="showSection('gallery')">Gallery</a></li>
+                <li><a class="nav-link" onclick="showSection('about')">About</a></li>
+                <li><a class="nav-link" onclick="showSection('contacts')">Contacts</a></li>
+            </ul>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="section active">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">EPICLUSTER</h1>
+                <p class="hero-subtitle">Media Production Company</p>
+                <p class="hero-subtitle" style="font-size: 1.2rem; margin-bottom: 3rem;">"Crafting Visual Stories That Inspire."</p>
+                
+                <a href="tel:+94770608910" class="hero-contact">
+                    <i class="fas fa-phone"></i>
+                    <span>+94 77 060 8910</span>
+                </a>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- What We Do -->
+        <div class="content-section">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">What We Do</h2>
+                    <p style="color: var(--text-gray);">Comprehensive media production services tailored to your vision</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-video service-icon"></i>
+                        <h3 class="service-title">Brand Videos</h3>
+                        <p class="service-desc">Compelling visual narratives that define your brand identity and connect with your audience emotionally.</p>
+                    </div>
+
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-ad service-icon"></i>
+                        <h3 class="service-title">Advertisements</h3>
+                        <p class="service-desc">High-impact commercial content designed to capture attention and drive conversions across all platforms.</p>
+                    </div>
+
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-box-open service-icon"></i>
+                        <h3 class="service-title">Product Videos</h3>
+                        <p class="service-desc">Showcase your products with cinematic quality that highlights features and benefits beautifully.</p>
+                    </div>
+
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-film service-icon"></i>
+                        <h3 class="service-title">Films</h3>
+                        <p class="service-desc">From short films to feature-length productions, we bring cinematic excellence to every frame.</p>
+                    </div>
+
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-broadcast-tower service-icon"></i>
+                        <h3 class="service-title">Live Productions</h3>
+                        <p class="service-desc">Professional multi-camera setups for events, concerts, and live streaming with broadcast quality.</p>
+                    </div>
+
+                    <div class="service-card fade-in-scroll">
+                        <i class="fas fa-blog service-icon"></i>
+                        <h3 class="service-title">Blogs & Content</h3>
+                        <p class="service-desc">Engaging digital content optimized for social media and web platforms to grow your presence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Stills Section -->
+        <div class="content-section bg-dark">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Our Job Stills</h2>
+                    <p style="color: var(--text-gray);">Capturing moments from our productions</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="Commercialshoot.jpeg" alt="Commercial Shoot">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Commercial Shoots</h3>
+                            <span class="gallery-category">Company Rebranding</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="product.jpeg" alt="Product Launch">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Live Events</h3>
+                            <span class="gallery-category">Media Coverage</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="Cinema.jpg" alt="Cinematic Shoot">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Cinematic Scenes</h3>
+                            <span class="gallery-category">Short Film</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Behind The Scenes -->
+        <div class="content-section">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Behind The Scenes</h2>
+                    <p style="color: var(--text-gray);">The magic happens here</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="bts1.jpg" alt="Behind the Scenes 1">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Crew Organization</h3>
+                            <span class="gallery-category">Film Production</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="bts2.jpg" alt="Behind the Scenes 2">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Editing Workflow</h3>
+                            <span class="gallery-category">Post-Production</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in-scroll">
+                        <img src="bts3.jpg" alt="Behind the Scenes 3">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Director's Vision</h3>
+                            <span class="gallery-category">Direction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Production Videos -->
+        <div class="content-section bg-dark">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Production Sample</h2>
+                    <h3 style="color: var(--text-white);">Watch our one of great works</h3>
+                    <p style="color: var(--text-gray);">This sequence was filmed during the day time.<br>This video is a good example of how we use double acting techniques in acting, Such as lighting, camerawork, color grading & editing.</p>
+                </div>
+
+                <!-- Video Player with Native Controls -->
+                <div class="video-container fade-in-scroll">
+                    <video width="100%" height="100%" controls>
+                        <source src="Short Story telling.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="section">
+        <div class="content-section" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Our Gallery</h2>
+                    <p style="color: var(--text-gray);">Explore our visual portfolio</p>
+                </div>
+
+                <!-- Gallery Filter Tabs -->
+                <div class="gallery-tabs fade-in-scroll">
+                    <button class="gallery-tab-btn active" onclick="filterGallery('trailers')">Output sample</button>
+                    <button class="gallery-tab-btn" onclick="filterGallery('bts')">Behind The Scenes</button>
+                    <button class="gallery-tab-btn" onclick="filterGallery('stills')">Photo Stills</button>
+                </div>
+
+                <!-- Output Sample (Trailers) -->
+                <div id="trailers" class="gallery-content active">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <video width="100%" height="100%" autoplay muted loop playsinline>
+                                <source src="vid1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Promotion Video Production</h3>
+                                <span class="gallery-category">Visit our Youtube Channel for more samples.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Behind The Scenes Videos -->
+                <div id="bts" class="gallery-content">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <video width="100%" height="100%" autoplay muted loop playsinline>
+                                <source src="btsvid1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Crew At Work</h3>
+                                <span class="gallery-category">Massive short film production</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <video width="100%" height="100%" autoplay muted loop playsinline>
+                                <source src="btsvid2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Advertisement Video Production</h3>
+                                <span class="gallery-category">Even Night time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Stills -->
+                <div id="stills" class="gallery-content">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="stil1.jpg" alt="Photo Still 1">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">High-End Gears</h3>
+                                <span class="gallery-category">Still Photography</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil2.jpg" alt="Photo Still 2">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Music Video Production</h3>
+                                <span class="gallery-category">With The Vibe</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil3.jpg" alt="Photo Still 3">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">MakeUp Miracle</h3>
+                                <span class="gallery-category">Getting ready</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil4.jpg" alt="Photo Still 4">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Award Winning Productions</h3>
+                                <span class="gallery-category">Film Making</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil5.jpg" alt="Photo Still 5">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Breaking Rules</h3>
+                                <span class="gallery-category">Next Level Productions</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil6.jpg" alt="Photo Still 6">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Director's View</h3>
+                                <span class="gallery-category">Guilding The Crew</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil7.jpg" alt="Photo Still 7">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Best Actor Award</h3>
+                                <span class="gallery-category">Kesara Banneheka</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil8.png" alt="Photo Still 8">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Best Short Film Production</h3>
+                                <span class="gallery-category">Sankhara Short Film</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil9.jpg" alt="Photo Still 9">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Celebrations</h3>
+                                <span class="gallery-category">Most Popular Short film</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil10.jpg" alt="Photo Still 10">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Ongoing Productions</h3>
+                                <span class="gallery-category">Production Still</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil11.jpg" alt="Photo Still 11">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Studio Deck</h3>
+                                <span class="gallery-category">High-end Technology</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil12.jpg" alt="Photo Still 12">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">The Crew</h3>
+                                <span class="gallery-category">Best Crew Ever</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil13.jpg" alt="Photo Still 13">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Production Still</h3>
+                                <span class="gallery-category">Comercial Video production</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil14.jpeg" alt="Photo Still 14">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">VFX Artist at work</h3>
+                                <span class="gallery-category">Visual Miracles</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil15.jpg" alt="Photo Still 15">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Cinema Still</h3>
+                                <span class="gallery-category">The Option 1 minute short film</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil16.jpg" alt="Photo Still 16">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Color Grading miracle</h3>
+                                <span class="gallery-category">davinci resolve & premiere pro</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil17.jpg" alt="Photo Still 17">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">DOP at work</h3>
+                                <span class="gallery-category">ready for another Take</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="stil18.jpg" alt="Photo Still 18">
+                            <div class="gallery-overlay">
+                                <h3 class="gallery-title">Production at the sky</h3>
+                                <span class="gallery-category">dronography</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <!-- About Hero -->
+        <div class="about-hero">
+            <div class="container">
+                <h2 class="section-title fade-in-scroll">Who We Are</h2>
+                <p class="about-text fade-in-scroll">
+                    We are EpicLuster, a professional production company dedicated to creating powerful visual stories. 
+                    We specialize in cinematic storytelling, brand films, advertisements, commercial production, and 
+                    creative digital content. Our passion is transforming ideas into impactful visual experiences that 
+                    elevate brands and inspire audiences.
+                </p>
+            </div>
+        </div>
+
+        <!-- Core Team -->
+        <div class="content-section">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Production Crew</h2>
+                    <p style="color: var(--text-gray);">The creative minds behind EpicLuster</p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="1.jpeg" alt="Danindu Hathurusinghe">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Danindu Hathurusinghe</h3>
+                            <p class="team-role">Director & Founder</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="2.jpg" alt="Damzith Thennakoon">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Damzith Thennakoon</h3>
+                            <p class="team-role">Main Designer & VFX Artist</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="3.jpg" alt="Anuhas Dilantha">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Anuhas Dilantha</h3>
+                            <p class="team-role">Co-Director</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="4.jpeg" alt="Kesara Heshani">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Kesara Heshani</h3>
+                            <p class="team-role">Script Writer</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="5.jpg" alt="Daham Nimsara">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Daham Nimsara</h3>
+                            <p class="team-role">Music Producer</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="6.jpg" alt="Nuran Hejitha">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Nuran Hejitha</h3>
+                            <p class="team-role">DOP</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="7.jpeg" alt="Ashmika Fernando">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Ashmika Fernando</h3>
+                            <p class="team-role">Coordinator</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="8.png" alt="Chamithu Dilana">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Chamithu Deelana</h3>
+                            <p class="team-role">Coordinator</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="9.jpg" alt="Heshan Neminda">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Heshan Neminda</h3>
+                            <p class="team-role">Gaffer</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card fade-in-scroll">
+                        <div class="team-image">
+                            <i class="fas fa-user"></i>
+                            <img src="10.jpg" alt="Pinidi Wathmavee">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Pinidi Vathmavee</h3>
+                            <p class="team-role">Costumes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cast Team -->
+        <div class="content-section bg-dark">
+            <div class="container">
+                <div class="section-header fade-in-scroll">
+                    <h2 class="section-title">Cast Team</h2>
+                    <p style="color: var(--text-gray);">Award-winning talent</p>
+                </div>
+
+                <div class="cast-grid">
+                    <div class="cast-card fade-in-scroll">
+                        <div class="cast-image">
+                            <i class="fas fa-user"></i>
+                            <img src="11.jpeg" alt="Dheeman Sasmitha">
+                        </div>
+                        <h3 class="cast-name">Dheeman Sasmitha</h3>
+                        <p class="cast-award">Best Actor 2024</p>
+                    </div>
+
+                    <div class="cast-card fade-in-scroll">
+                        <div class="cast-image">
+                            <i class="fas fa-user"></i>
+                            <img src="12.png" alt="Kesara Banneheka">
+                        </div>
+                        <h3 class="cast-name">Kesara Banneheka</h3>
+                        <p class="cast-award">Best Actor 2025</p>
+                    </div>
+
+                    <div class="cast-card fade-in-scroll">
+                        <div class="cast-image">
+                            <i class="fas fa-user"></i>
+                            <img src="13.png" alt="Sadeesha Sewmi">
+                        </div>
+                        <h3 class="cast-name">Sadeesha Sewmi</h3>
+                        <p class="cast-award">Award Winning Actress</p>
+                    </div>
+
+                    <div class="cast-card fade-in-scroll">
+                        <div class="cast-image">
+                            <i class="fas fa-user"></i>
+                            <img src="14.jpeg" alt="Jeshan Anupama">
+                        </div>
+                        <h3 class="cast-name">Jeshan Anupama</h3>
+                        <p class="cast-award">Best Co-Actor</p>
+                    </div>
+
+                    <div class="cast-card fade-in-scroll">
+                        <div class="cast-image">
+                            <i class="fas fa-user"></i>
+                            <img src="15.jpeg" alt="Dulanjana">
+                        </div>
+                        <h3 class="cast-name">Dulanjana Lakshan</h3>
+                        <p class="cast-award">Actor & Announcer</p>
+                    </div>
+                </div>
+
+                <p class="text-center mt-4 fade-in-scroll" style="text-align: center; color: var(--text-gray); margin-top: 3rem;">
+                    And many more talented artists...
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS SECTION -->
+    <section id="contacts" class="section">
+        <div class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info fade-in-scroll">
+                        <h2>Get In Touch</h2>
+                        <p style="color: var(--text-gray); margin-bottom: 3rem;">Ready to create something epic? Contact us today.</p>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Phone or WhatsApp</h3>
+                                <a href="tel:+94770608910">+94 77 060 8910</a><br>
+                                <a href="tel:+94787313065">+94 78 731 3065</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <a href="mailto:daninduhathurusinghe@gmail.com">daninduhathurusinghe@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/share/1HkKUPDyLM/?mibextid=wwXIfr" target="_blank" class="social-link" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@itzdanindu?_r=1&_t=ZS-93rTWqKqkmS" target="_blank" class="social-link" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://youtube.com/@epicluster" target="_blank" class="social-link" title="YouTube Main">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://youtube.com/@daninduhathurusinghe" target="_blank" class="social-link" title="Corporate Channel">
+                                <i class="fas fa-building"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-visual fade-in-scroll">
+                        <i class="fas fa-film"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">EPIC<span>LUSTER</span></div>
+            <p class="footer-text">Crafting Visual Stories That Inspire</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EpicLuster Media Production. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sectionId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-scroll').forEach((el) => observer.observe(el));
+
+        function filterGallery(category) {
+            const buttons = document.querySelectorAll('.gallery-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const contents = document.querySelectorAll('.gallery-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const targetContent = document.getElementById(category);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.padding = '1rem 5%';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                navbar.style.padding = '1.5rem 5%';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        document.querySelectorAll('.team-image img, .cast-image img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.display = 'block';
+                this.previousElementSibling.style.display = 'none';
+            });
+            
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                this.previousElementSibling.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
